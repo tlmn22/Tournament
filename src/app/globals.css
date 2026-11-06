@@ -259,3 +259,17 @@
   .not-found h2 { font-size: 26px; margin: 12px 0; }
   .not-found p { font-size: 13px; color: var(--muted); line-height: 1.8; }
   .not-found .button { margin-top: 25px; }
+
+/* Account forms */
+.auth-form { display: flex; flex-direction: column; gap: 10px; width: 100%; margin-top: 24px; }
+.auth-form label { font-size: 12px; font-weight: 700; margin-top: 6px; }
+.auth-form input { width: 100%; min-width: 0; min-height: 46px; border: 1px solid #bbc8b2; border-radius: 6px; padding: 10px 12px; background: white; color: var(--ink); }
+.auth-form small { color: #536346; font-size: 11px; }
+.auth-form .button { margin-top: 12px; }
+.button:disabled, .auth-notice button:disabled { opacity: .65; cursor: wait; transform: none; }
+.auth-content .auth-error { color: #9a2525; background: #fff0ed; padding: 12px; border-radius: 6px; font-size: 12px; width: 100%; }
+.auth-notice { margin-top: 18px; padding: 14px; background: #eff5e6; border-radius: 6px; font-size: 12px; line-height: 1.8; }
+.auth-notice button { background: transparent; border: 0; border-bottom: 1px solid #9bad89; margin-top: 10px; text-align: left; }
+.auth-signout { margin-top: 16px; }
+.auth-content, .auth-art { min-width: 0; }
+.account-email { overflow-wrap: anywhere; max-width: 100%; }

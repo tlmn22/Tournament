@@ -1,0 +1,102 @@
+import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
+import { PGlite } from "@electric-sql/pglite";
+const db = new PGlite();
+const one = "11111111-1111-4111-8111-111111111111", two = "22222222-2222-4222-8222-222222222222";
+await db.exec(`
+  create role anon; create role authenticated;
+  create schema auth; create table auth.users(id uuid primary key);
+  create function auth.uid() returns uuid language sql stable as $$ select nullif(current_setting('request.user',true),'')::uuid $$;
+  grant usage on schema auth,public to anon,authenticated;
+  grant execute on function auth.uid() to anon,authenticated;
+  insert into auth.users values ('${one}'),('${two}');
+`);
+await db.exec(await readFile("supabase/migrations/202610220001_tournament_workspace.sql", "utf8"));
+
+await db.exec("create schema storage; create table storage.buckets(id text primary key,name text,public boolean,file_size_limit bigint,allowed_mime_types text[]); create table storage.objects(id uuid default gen_random_uuid(),bucket_id text,name text); alter table storage.objects enable row level security; grant usage on schema storage to authenticated; grant select,insert,update,delete on storage.objects to authenticated;");
+await db.exec(await readFile("supabase/migrations/202610220002_festival_media_articles.sql", "utf8"));
+await db.exec(await readFile("supabase/migrations/202610220002_festival_media_articles.sql", "utf8"));
+async function role(id) {
+  await db.exec("reset role");
+  await db.query("select set_config('request.user',$1,false)", [id || ""]);
+  await db.exec("set role " + (id ? "authenticated" : "anon"));
+}
+async function row(sql, args = []) { return (await db.query(sql, args)).rows[0]; }
+async function denied(sql, args = []) { await assert.rejects(db.query(sql, args)); }
+await role(one);
+const t1 = await row("insert into tournaments(owner_id,name) values ($1,'Private cup') returning *", [one]);
+const e1 = await row("insert into tournament_events(tournament_id,name,sport) values ($1,'Basketball','basketball') returning *", [t1.id]);
+const c1 = await row("insert into companies(tournament_id,name) values ($1,'Company one') returning *", [t1.id]);
+const a = await row("insert into teams(tournament_event_id,name,company_id) values ($1,'Alpha',$2) returning *", [e1.id,c1.id]);
+const b = await row("insert into teams(tournament_event_id,name) values ($1,'Beta') returning *", [e1.id]);
+const f = await row("insert into tournament_fixtures(tournament_event_id,home_team_id,away_team_id) values ($1,$2,$3) returning *", [e1.id,a.id,b.id]);
+await role(two);
+assert.equal((await db.query("select * from tournaments")).rows.length,0);
+assert.equal((await db.query("select * from teams")).rows.length,0);
+assert.equal((await db.query("select * from tournament_fixtures")).rows.length,0);
+await denied("insert into tournaments(owner_id,name) values ($1,'Spoofed')",[one]);
+await denied("insert into tournament_events(tournament_id,name,sport) values ($1,'Hijack','basketball')",[t1.id]);
+const t2 = await row("insert into tournaments(owner_id,name,status) values ($1,'Public cup','published') returning *",[two]);
+const e2 = await row("insert into tournament_events(tournament_id,name,sport) values ($1,'Other event','basketball') returning *",[t2.id]);
+const otherTeam = await row("insert into teams(tournament_event_id,name) values ($1,'Other team') returning *",[e2.id]);
+const c2 = await row("insert into companies(tournament_id,name) values ($1,'Company two') returning *",[t2.id]);
+await role(one);
+await denied("update tournaments set owner_id=$1 where id=$2",[two,t1.id]);
+await denied("insert into teams(tournament_event_id,name,company_id) values ($1,'Cross company',$2)",[e1.id,c2.id]);
+await denied("insert into tournament_fixtures(tournament_event_id,home_team_id,away_team_id) values ($1,$2,$3)",[e1.id,a.id,otherTeam.id]);
+await denied("insert into tournament_fixtures(tournament_event_id,home_team_id,away_team_id) values ($1,$2,$2)",[e1.id,a.id]);
+await denied("update tournament_fixtures set status='completed' where id=$1",[f.id]);
+await denied("update tournament_fixtures set status='completed',home_score=-1,away_score=2 where id=$1",[f.id]);
+await denied("delete from teams where id=$1",[a.id]);
+await db.query("update tournament_fixtures set status='completed',home_score=48,away_score=42 where id=$1",[f.id]);
+await db.query("update tournaments set status='published' where id=$1",[t1.id]);
+await role(two);
+assert.equal((await db.query("select * from tournament_fixtures where id=$1",[f.id])).rows.length,1);
+assert.equal((await db.query("update tournaments set name='Hijacked' where id=$1 returning id",[t1.id])).rows.length,0);
+assert.equal((await db.query("delete from tournaments where id=$1 returning id",[t1.id])).rows.length,0);
+assert.equal((await db.query("update teams set name='Hijacked' where id=$1 returning id",[a.id])).rows.length,0);
+assert.equal((await db.query("delete from teams where id=$1 returning id",[a.id])).rows.length,0);
+assert.equal((await db.query("update tournament_fixtures set home_score=999 where id=$1 returning id",[f.id])).rows.length,0);
+assert.equal((await db.query("delete from tournament_fixtures where id=$1 returning id",[f.id])).rows.length,0);
+await denied("insert into tournament_fixtures(tournament_event_id,home_team_id,away_team_id) values ($1,$2,$3)",[e1.id,a.id,b.id]);
+await role(null);
+assert.equal((await db.query("select * from tournaments")).rows.length,2);
+assert.equal((await row("select * from tournament_fixtures where id=$1",[f.id])).home_score,48);
+await denied("insert into tournaments(owner_id,name) values ($1,'Anonymous')",[one]);
+await denied("update tournaments set name='Anonymous' where id=$1",[t1.id]);
+await denied("delete from teams where id=$1",[a.id]);
+await role(one);
+await db.query("update tournaments set status='draft' where id=$1",[t1.id]);
+await role(null);
+for (const table of ["tournaments","tournament_events","companies","teams","tournament_fixtures"]) {
+  const rows = (await db.query("select * from " + table)).rows;
+  assert.equal(rows.some(r => [t1.id,e1.id,c1.id,a.id,b.id,f.id].includes(r.id)),false,table+" must hide unpublished data");
+}
+await role(one);
+await db.query("delete from tournament_fixtures where id=$1",[f.id]);
+await db.query("delete from teams where id=$1",[a.id]);
+console.log("PASS: owner CRUD, owner spoofing denied, cross-owner writes denied, public published-only reads, unpublish hides children, anonymous writes denied, cross-event teams rejected, invalid scores rejected, referenced team deletion rejected.");
+
+await role(one);
+const article = await row("insert into tournament_articles(tournament_id,title) values ($1,'Recap') returning *",[t1.id]);
+await db.query("insert into storage.objects(bucket_id,name) values ('tournament-media',$1)",[t1.id+'/logo.png']);
+await db.query("update tournaments set status='published' where id=$1",[t1.id]);
+await role(null);
+assert.equal((await db.query("select * from tournament_articles")).rows.length,0);
+await role(two);
+await denied("insert into storage.objects(bucket_id,name) values ('tournament-media',$1)",[t1.id+'/bad.png']);
+await denied("insert into tournament_articles(tournament_id,title) values ($1,'Bad')",[t1.id]);
+await role(one);
+await denied("update teams set final_place=0 where id=$1",[b.id]);
+await denied("update tournament_articles set status='published' where id=$1",[article.id]);
+await db.query("update tournament_articles set status='published',body='Recap body',published_at=now() where id=$1",[article.id]);
+await role(null);
+assert.equal((await db.query("select * from tournament_articles")).rows.length,1);
+await role(two);
+assert.equal((await db.query("update tournament_articles set title='Bad' where id=$1 returning id",[article.id])).rows.length,0);
+await role(one);
+await db.query("update tournaments set status='draft' where id=$1",[t1.id]);
+await role(null);
+assert.equal((await db.query("select * from tournament_articles")).rows.length,0);
+console.log("PASS: festival migration repeatability, manual places, draft/public articles, cross-owner article and media protection.");
+await db.close();

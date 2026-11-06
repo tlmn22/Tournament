@@ -8,10 +8,18 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "check:ui": "node scripts/check-ui.mjs"
+    "check:ui": "node scripts/check-ui.mjs",
+    "check:auth": "node scripts/check-auth.mjs",
+    "check:db": "node scripts/check-tournament-db.mjs",
+    "check:tournaments": "node scripts/check-tournaments.mjs",
+    "check:fixtures": "node scripts/check-fixture-generation.mjs",
+    "check:fixtures:ui": "node scripts/check-fixture-generator-ui.mjs",
+    "check:groups": "node scripts/check-group-results.mjs",
+    "check:points": "node scripts/check-company-points.mjs"
   },
   "dependencies": {
     "@fontsource-variable/manrope": "5.3.0",
+    "@supabase/supabase-js": "^2.118.0",
     "lucide-react": "1.47.0",
     "next": "16.3.5",
     "react": "19.3.0",
@@ -19,6 +27,7 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "4.13.0",
+    "@electric-sql/pglite": "^0.5.11",
     "@playwright/test": "1.63.0",
     "@types/node": "24.13.6",
     "@types/react": "19.3.0",
