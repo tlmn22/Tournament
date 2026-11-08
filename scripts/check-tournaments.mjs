@@ -333,7 +333,7 @@ await mkdir(".preview", { recursive: true });
   await expect(publicMatches).toHaveCount(0);
   await publicPage.getByRole("button", { name: "Бүх ангилал", exact: true }).click();
   await expect(publicMatches.locator("tbody tr")).toHaveCount(3);
-  await publicPage.getByRole("button", { name: "Бүх төрлийн оролцоо", exact: true }).click();
+  await publicPage.getByRole("button", { name: "Багийн дүн", exact: true }).click();
 
 await publicPage.getByRole("region",{name:"Бүх спортын оролцооны хүснэгт"}).waitFor();
 
