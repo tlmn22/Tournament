@@ -11,7 +11,6 @@ import { TournamentEditor } from "./tournament-editor";
 import { OrganizationsManager } from "./festival-organizations";
 import { SportsManager } from "./festival-sports";
 import { CompanyPointsManager } from "./company-points-manager";
-import { ArticleManager } from "./article-manager";
 import { TeamLogo } from "./festival-media";
 import { FixtureGenerator } from "./fixture-generator";
 
@@ -45,7 +44,7 @@ export function AdminTournament({ id }: { id: string }) {
       <button className="button button-dark" onClick={publish} disabled={busy || pending}>{t.status === "published" ? <EyeOff size={17} /> : <Globe2 size={17} />}{busy ? "Хадгалж байна…" : t.status === "published" ? "Нийтлэлээс буулгах" : "Нийтлэх"}</button>
     </div></div>
     {actionError && <Notice error>{actionError}</Notice>}
-    <div className="tp-tabs" aria-label="Тэмцээний удирдлага">{[["organizations", "1. Оролцогч багууд"], ["sports", "2. Спортын тэмцээнүүд"], ["participation", "Бүх төрлийн оролцоо"], ["articles", "Нийтлэлүүд"], ["overview", "Тохиргоо"]].map(([key, label]) => <button key={key} type="button" aria-pressed={tab === key} onClick={() => { setTab(key); if (key === "sports") setSelectedEvent(""); }}>{label}</button>)}</div>
+    <div className="tp-tabs" aria-label="Тэмцээний удирдлага">{[["organizations", "1. Оролцогч багууд"], ["sports", "2. Спортын тэмцээнүүд"], ["participation", "Бүх төрлийн оролцоо"], ["overview", "Тохиргоо"]].map(([key, label]) => <button key={key} type="button" aria-pressed={tab === key} onClick={() => { setTab(key); if (key === "sports") setSelectedEvent(""); }}>{label}</button>)}</div>
     {tab === "overview" && <div className="admin-overview"><TournamentEditor tournament={t} onSaved={reload} /><aside className="tp-panel admin-guide"><span className="section-kicker">БЭЛЭН БОЛГОХ АЛХМУУД</span><h2>Талбараа бэлдэе.</h2><ol><li>Үндсэн мэдээллээ оруул.</li><li>Оролцогчдоо нэр, логотой нь нэм.</li><li>Спортын тэмцээнүүддээ багуудаа бүртгэ.</li><li>Тоглолт, үр дүн, нийтлэлээ оруул.</li><li>Тэмцээнээ нийтлээд холбоосоо хуваалц.</li></ol><p>Нийтэлсний дараах өөрчлөлтүүд нийтийн хуудсанд харагдана.</p></aside></div>}
     {tab === "organizations" && <OrganizationsManager data={data} reload={reload} next={() => setTab("sports")} />}
     {tab === "sports" && (!activeEvent ? <SportsManager data={data} reload={reload} open={id => { setSelectedEvent(id); setSportTab("teams"); }} /> : <section>
@@ -55,7 +54,6 @@ export function AdminTournament({ id }: { id: string }) {
       {sportTab === "teams" ? <TeamsManager key={eventId} data={data} eventId={eventId} reload={reload} showMatches={() => setSportTab("matches")} /> : <MatchesManager key={eventId} data={data} eventId={eventId} reload={reload} showTeams={() => setSportTab("teams")} />}
     </section>)}
     {tab === "participation" && <CompanyPointsManager data={data} reload={reload} onEvent={id => { setSelectedEvent(id); setSportTab("teams"); setTab("sports"); }} />}
-    {tab === "articles" && <ArticleManager data={data} reload={reload} />}
   </>;
 }
 

@@ -7,7 +7,6 @@ import { ArrowLeft, CalendarDays, RefreshCw, Trophy, UsersRound } from "lucide-r
 import { dateLabel, loadTournament, sports } from "@/lib/tournaments";
 import { useRemote, Notice, Empty, MatchTable } from "./tournament-ui";
 import { ParticipationTable } from "./participation-table";
-import { ArticleFeed } from "./festival-articles";
 import { FinalStandings } from "./final-standings";
 import { GroupResults } from "./group-results";
 import { buildGroupResults } from "@/lib/group-results";
@@ -37,7 +36,7 @@ export function PublicTournament({ id }: { id: string }) {
   return <>
     <Link className="back-link" href="/tournaments"><ArrowLeft size={16} />Бүх тэмцээн</Link>
     <section className="tp-event-hero"><div><span className="tp-event-kicker">{live ? "● ТОГЛОЛТ ҮРГЭЛЖИЛЖ БАЙНА" : "ХАМТЫН ЯЛАЛТЫН ТАЛБАР"}</span><h1>{t.name}</h1><div className="tp-event-meta"><span><CalendarDays size={17} />{dateLabel(t.start_date)}{t.end_date && t.end_date !== t.start_date ? " — " + dateLabel(t.end_date) : ""}</span><span><UsersRound size={17} />{data.organizations.length} оролцогч · {teams.length} спортын баг</span><span><Trophy size={17} />{events.length} ангилал</span></div></div><Trophy className="tp-event-trophy" size={150} strokeWidth={.75} aria-hidden="true" /></section>
-    <div className="tp-public-controls"><div className="tp-tabs" aria-label="Тэмцээний мэдээлэл">{[["schedule", "Тоглолтууд"], ["participation", "Багийн дүн"], ["results", "Үр дүн"], ["teams", "Багууд"], ["articles", "Нийтлэлүүд"], ["about", "Танилцуулга"]].map(([key, label]) => <button key={key} aria-pressed={tab === key} onClick={() => setTab(key)} type="button">{label}</button>)}</div><button type="button" className="tp-refresh" onClick={reload} disabled={pending}><RefreshCw size={15} className={pending ? "tp-spin" : ""} />{pending ? "Шинэчилж байна…" : "Шинэчлэх"}</button></div>
+    <div className="tp-public-controls"><div className="tp-tabs" aria-label="Тэмцээний мэдээлэл">{[["schedule", "Тоглолтууд"], ["participation", "Багийн дүн"], ["results", "Үр дүн"], ["teams", "Багууд"], ["about", "Танилцуулга"]].map(([key, label]) => <button key={key} aria-pressed={tab === key} onClick={() => setTab(key)} type="button">{label}</button>)}</div><button type="button" className="tp-refresh" onClick={reload} disabled={pending}><RefreshCw size={15} className={pending ? "tp-spin" : ""} />{pending ? "Шинэчилж байна…" : "Шинэчлэх"}</button></div>
     {["schedule", "results", "teams"].includes(tab) && events.length > 1 && <div className="tp-event-filters" aria-label="Спортын ангиллаар шүүх"><button type="button" aria-pressed={eventId === "all"} onClick={() => setEventId("all")}>Бүх ангилал</button>{events.map(e => <button key={e.id} type="button" aria-pressed={eventId === e.id} onClick={() => setEventId(e.id)}>{e.name}</button>)}</div>}
     {tab === "results" && resultGroups.length > 0 && <div className="tp-event-filters tp-result-views" aria-label="Үр дүн харах хэлбэр">
       <button type="button" aria-pressed={resultsView === "groups"} onClick={() => setResultsView("groups")}>Хэсгийн хүснэгт</button>
@@ -50,7 +49,6 @@ export function PublicTournament({ id }: { id: string }) {
     </>}
     {tab === "teams" && <><div className="tp-section-title"><h2>Өөр өөр баг. Нэг зорилго.</h2><span>{selectedTeams.length} баг</span></div>{selectedTeams.length ? <div className="tp-public-teams">{selectedTeams.map(team => <article className="tp-panel" key={team.id}><TeamLogo name={team.name} url={data.organizations.find(o => o.id === team.company_id)?.logo_url} /><h3>{team.name}</h3><p>{data.organizations.find(o => o.id === team.company_id)?.name || ""}{team.final_place ? " · " + team.final_place + "-р байр" : ""}</p><span className="tp-badge">{events.find(e => e.id === team.tournament_event_id)?.name}</span></article>)}</div> : <Empty title="Багууд удахгүй нэмэгдэнэ." />}</>}
     {tab === "participation" && <ParticipationTable data={data} onEvent={id => { setEventId(id); setTab("results"); }} />}
-    {tab === "articles" && <ArticleFeed articles={data.articles} tournamentId={id} />}
     {tab === "about" && <div className="tp-about-grid"><section className="tp-panel"><h2>Тэмцээний тухай</h2><p className="tp-description">{t.description || "Дэлгэрэнгүй танилцуулга удахгүй нэмэгдэнэ."}</p></section><section className="tp-panel"><h2>Спортын ангиллууд</h2>{events.length ? events.map(e => <div className="tp-about-event" key={e.id}><strong>{e.name}</strong><span>{sports[e.sport] || e.sport}</span></div>) : <p className="tp-muted">Ангилал хараахан нэмээгүй.</p>}</section></div>}
   </>;
 }
