@@ -1,0 +1,687 @@
+{
+  "tournament_title_source": "Бөөрөлжүүт Cup 2026",
+  "sport": "chess",
+  "category": "men",
+  "source": "image.png",
+  "status": "transcribed_not_imported",
+  "date": null,
+  "notes": [
+    "Round 2 image missing.",
+    "Image (5).jpg and Image (6).jpg both show Round 3.",
+    "Printed round sheets show 2026/03/17; actual event date needs confirmation.",
+    "All organization names mapped; database organization IDs remain unlinked. Original club labels preserved."
+  ],
+  "standings": [
+    {
+      "rank": 1,
+      "name": "Балжинням Х",
+      "club_source": "ЦСҮГ. Үйлдвэрлэлийн хэлтэс",
+      "organization_id": null,
+      "points": 7,
+      "organization_name": "ЦСҮГ",
+      "organization_mapping_source": "explicit_source_prefix",
+      "start_number": 1
+    },
+    {
+      "rank": 2,
+      "name": "Ганбат З",
+      "club_source": "ЦСҮГ. Үйлдвэрлэлийн хэлтэс",
+      "organization_id": null,
+      "points": 5,
+      "organization_name": "ЦСҮГ",
+      "organization_mapping_source": "explicit_source_prefix",
+      "start_number": 7
+    },
+    {
+      "rank": 3,
+      "name": "Цэрэнтогтох А",
+      "club_source": "ТҮГ, ХЭМАББОХ",
+      "organization_id": null,
+      "points": 5,
+      "organization_name": "ТҮГ",
+      "organization_mapping_source": "explicit_source_prefix",
+      "start_number": 14
+    },
+    {
+      "rank": 4,
+      "name": "Дорждэрэм Б",
+      "club_source": "ЦСҮГ, засварын хэлтэс",
+      "organization_id": null,
+      "points": 4.5,
+      "organization_name": "ЦСҮГ",
+      "organization_mapping_source": "explicit_source_prefix",
+      "start_number": 9
+    },
+    {
+      "rank": 5,
+      "name": "Эрдэнэбаяр Б",
+      "club_source": "Уурхайн технологийн хэлтэс",
+      "organization_id": null,
+      "points": 4.5,
+      "organization_name": "УУГ",
+      "organization_mapping_source": "user_confirmed",
+      "start_number": 17
+    },
+    {
+      "rank": 6,
+      "name": "Ганзориг Б",
+      "club_source": "УАГ-МТХ",
+      "organization_id": null,
+      "points": 4,
+      "organization_name": "Оффис",
+      "organization_mapping_source": "user_confirmed",
+      "start_number": 8
+    },
+    {
+      "rank": 7,
+      "name": "Бат-Өлзийт Т",
+      "club_source": "ТҮГ, ХЭМАББОХ",
+      "organization_id": null,
+      "points": 4,
+      "organization_name": "ТҮГ",
+      "organization_mapping_source": "explicit_source_prefix",
+      "start_number": 3
+    },
+    {
+      "rank": 8,
+      "name": "Цэндсүрэн М",
+      "club_source": "Уурхайн ашиглалтын алба",
+      "organization_id": null,
+      "points": 4,
+      "organization_name": "УУГ",
+      "organization_mapping_source": "user_confirmed",
+      "start_number": 13
+    },
+    {
+      "rank": 9,
+      "name": "Шийрэвдамба Л",
+      "club_source": "ЦСҮГ. Үйлдвэрлэлийн хэлтэс",
+      "organization_id": null,
+      "points": 4,
+      "organization_name": "ЦСҮГ",
+      "organization_mapping_source": "explicit_source_prefix",
+      "start_number": 15
+    },
+    {
+      "rank": 10,
+      "name": "Золжаргал Н",
+      "club_source": "ЦСҮГ, ХАБ",
+      "organization_id": null,
+      "points": 3,
+      "organization_name": "ЦСҮГ",
+      "organization_mapping_source": "explicit_source_prefix",
+      "start_number": 10
+    },
+    {
+      "rank": 11,
+      "name": "Эрдэнэбат У",
+      "club_source": "Засварын хэлтэс",
+      "organization_id": null,
+      "points": 3,
+      "organization_name": "УУГ",
+      "organization_mapping_source": "user_confirmed",
+      "start_number": 16
+    },
+    {
+      "rank": 12,
+      "name": "Эрдэнэ-Очир Д",
+      "club_source": "ТҮГ, ХЭМАББОХ",
+      "organization_id": null,
+      "points": 3,
+      "organization_name": "ТҮГ",
+      "organization_mapping_source": "explicit_source_prefix",
+      "start_number": 18
+    },
+    {
+      "rank": 13,
+      "name": "Төрбат Н",
+      "club_source": "ТҮГ, ХЭМАББОХ",
+      "organization_id": null,
+      "points": 3,
+      "organization_name": "ТҮГ",
+      "organization_mapping_source": "explicit_source_prefix",
+      "start_number": 12
+    },
+    {
+      "rank": 14,
+      "name": "Баярбадрал Х",
+      "club_source": "ТҮГ, ХЭМАББОХ",
+      "organization_id": null,
+      "points": 3,
+      "organization_name": "ТҮГ",
+      "organization_mapping_source": "explicit_source_prefix",
+      "start_number": 4
+    },
+    {
+      "rank": 15,
+      "name": "Батхишиг С",
+      "club_source": "СҮГ-СБХ",
+      "organization_id": null,
+      "points": 2,
+      "organization_name": "Оффис",
+      "organization_mapping_source": "user_confirmed",
+      "start_number": 11
+    },
+    {
+      "rank": 16,
+      "name": "Батболд С",
+      "club_source": "Уурхайн ашиглалтын алба",
+      "organization_id": null,
+      "points": 2,
+      "organization_name": "УУГ",
+      "organization_mapping_source": "user_confirmed",
+      "start_number": 2
+    },
+    {
+      "rank": 17,
+      "name": "Ганбаатар З",
+      "club_source": "Уурхайн ашиглалтын алба",
+      "organization_id": null,
+      "points": 1,
+      "organization_name": "УУГ",
+      "organization_mapping_source": "user_confirmed",
+      "start_number": 6
+    },
+    {
+      "rank": 18,
+      "name": "Баярсайхан Б",
+      "club_source": "ХАБХХ",
+      "organization_id": null,
+      "points": 1,
+      "organization_name": "ЦСҮГ",
+      "organization_mapping_source": "user_confirmed",
+      "start_number": 5
+    }
+  ],
+  "games": [
+    {
+      "round": 1,
+      "board": 1,
+      "white_start_number": 1,
+      "black_start_number": 10,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (7).jpg"
+    },
+    {
+      "round": 1,
+      "board": 2,
+      "white_start_number": 11,
+      "black_start_number": 2,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (7).jpg"
+    },
+    {
+      "round": 1,
+      "board": 3,
+      "white_start_number": 3,
+      "black_start_number": 12,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (7).jpg"
+    },
+    {
+      "round": 1,
+      "board": 4,
+      "white_start_number": 13,
+      "black_start_number": 4,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (7).jpg"
+    },
+    {
+      "round": 1,
+      "board": 5,
+      "white_start_number": 5,
+      "black_start_number": 14,
+      "white_score": 0,
+      "black_score": 1,
+      "source": "Image (7).jpg"
+    },
+    {
+      "round": 1,
+      "board": 6,
+      "white_start_number": 15,
+      "black_start_number": 6,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (7).jpg"
+    },
+    {
+      "round": 1,
+      "board": 7,
+      "white_start_number": 7,
+      "black_start_number": 16,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (7).jpg"
+    },
+    {
+      "round": 1,
+      "board": 8,
+      "white_start_number": 17,
+      "black_start_number": 8,
+      "white_score": 0,
+      "black_score": 1,
+      "source": "Image (7).jpg"
+    },
+    {
+      "round": 1,
+      "board": 9,
+      "white_start_number": 9,
+      "black_start_number": 18,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (7).jpg"
+    },
+    {
+      "round": 3,
+      "board": 1,
+      "white_start_number": 1,
+      "black_start_number": 8,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (5).jpg"
+    },
+    {
+      "round": 3,
+      "board": 2,
+      "white_start_number": 3,
+      "black_start_number": 15,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (5).jpg"
+    },
+    {
+      "round": 3,
+      "board": 3,
+      "white_start_number": 7,
+      "black_start_number": 9,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (5).jpg"
+    },
+    {
+      "round": 3,
+      "board": 4,
+      "white_start_number": 13,
+      "black_start_number": 10,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (5).jpg"
+    },
+    {
+      "round": 3,
+      "board": 5,
+      "white_start_number": 17,
+      "black_start_number": 11,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (5).jpg"
+    },
+    {
+      "round": 3,
+      "board": 6,
+      "white_start_number": 12,
+      "black_start_number": 14,
+      "white_score": 0,
+      "black_score": 1,
+      "source": "Image (5).jpg"
+    },
+    {
+      "round": 3,
+      "board": 7,
+      "white_start_number": 4,
+      "black_start_number": 16,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (5).jpg"
+    },
+    {
+      "round": 3,
+      "board": 8,
+      "white_start_number": 18,
+      "black_start_number": 2,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (5).jpg"
+    },
+    {
+      "round": 3,
+      "board": 9,
+      "white_start_number": 5,
+      "black_start_number": 6,
+      "white_score": 0,
+      "black_score": 1,
+      "source": "Image (5).jpg"
+    },
+    {
+      "round": 4,
+      "board": 1,
+      "white_start_number": 7,
+      "black_start_number": 1,
+      "white_score": 0,
+      "black_score": 1,
+      "source": "Image (4).jpg"
+    },
+    {
+      "round": 4,
+      "board": 2,
+      "white_start_number": 8,
+      "black_start_number": 3,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (4).jpg"
+    },
+    {
+      "round": 4,
+      "board": 3,
+      "white_start_number": 15,
+      "black_start_number": 13,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (4).jpg"
+    },
+    {
+      "round": 4,
+      "board": 4,
+      "white_start_number": 14,
+      "black_start_number": 17,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (4).jpg"
+    },
+    {
+      "round": 4,
+      "board": 5,
+      "white_start_number": 18,
+      "black_start_number": 4,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (4).jpg"
+    },
+    {
+      "round": 4,
+      "board": 6,
+      "white_start_number": 6,
+      "black_start_number": 11,
+      "white_score": 0,
+      "black_score": 1,
+      "source": "Image (4).jpg"
+    },
+    {
+      "round": 4,
+      "board": 7,
+      "white_start_number": 12,
+      "black_start_number": 9,
+      "white_score": 0,
+      "black_score": 1,
+      "source": "Image (4).jpg"
+    },
+    {
+      "round": 4,
+      "board": 8,
+      "white_start_number": 10,
+      "black_start_number": 16,
+      "white_score": 0,
+      "black_score": 1,
+      "source": "Image (4).jpg"
+    },
+    {
+      "round": 4,
+      "board": 9,
+      "white_start_number": 2,
+      "black_start_number": 5,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (4).jpg"
+    },
+    {
+      "round": 5,
+      "board": 1,
+      "white_start_number": 1,
+      "black_start_number": 14,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (3).jpg"
+    },
+    {
+      "round": 5,
+      "board": 2,
+      "white_start_number": 3,
+      "black_start_number": 7,
+      "white_score": 0,
+      "black_score": 1,
+      "source": "Image (3).jpg"
+    },
+    {
+      "round": 5,
+      "board": 3,
+      "white_start_number": 15,
+      "black_start_number": 8,
+      "white_score": 0,
+      "black_score": 1,
+      "source": "Image (3).jpg"
+    },
+    {
+      "round": 5,
+      "board": 4,
+      "white_start_number": 9,
+      "black_start_number": 17,
+      "white_score": 0.5,
+      "black_score": 0.5,
+      "source": "Image (3).jpg"
+    },
+    {
+      "round": 5,
+      "board": 5,
+      "white_start_number": 11,
+      "black_start_number": 18,
+      "white_score": 0,
+      "black_score": 1,
+      "source": "Image (3).jpg"
+    },
+    {
+      "round": 5,
+      "board": 6,
+      "white_start_number": 16,
+      "black_start_number": 13,
+      "white_score": 0,
+      "black_score": 1,
+      "source": "Image (3).jpg"
+    },
+    {
+      "round": 5,
+      "board": 7,
+      "white_start_number": 6,
+      "black_start_number": 2,
+      "white_score": 0,
+      "black_score": 1,
+      "source": "Image (3).jpg"
+    },
+    {
+      "round": 5,
+      "board": 8,
+      "white_start_number": 4,
+      "black_start_number": 10,
+      "white_score": 0,
+      "black_score": 1,
+      "source": "Image (3).jpg"
+    },
+    {
+      "round": 5,
+      "board": 9,
+      "white_start_number": 5,
+      "black_start_number": 12,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (3).jpg"
+    },
+    {
+      "round": 6,
+      "board": 1,
+      "white_start_number": 13,
+      "black_start_number": 1,
+      "white_score": 0,
+      "black_score": 1,
+      "source": "Image (1).jpg"
+    },
+    {
+      "round": 6,
+      "board": 2,
+      "white_start_number": 8,
+      "black_start_number": 7,
+      "white_score": 0,
+      "black_score": 1,
+      "source": "Image (1).jpg"
+    },
+    {
+      "round": 6,
+      "board": 3,
+      "white_start_number": 18,
+      "black_start_number": 3,
+      "white_score": 0,
+      "black_score": 1,
+      "source": "Image (1).jpg"
+    },
+    {
+      "round": 6,
+      "board": 4,
+      "white_start_number": 14,
+      "black_start_number": 15,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (1).jpg"
+    },
+    {
+      "round": 6,
+      "board": 5,
+      "white_start_number": 2,
+      "black_start_number": 9,
+      "white_score": 0,
+      "black_score": 1,
+      "source": "Image (1).jpg"
+    },
+    {
+      "round": 6,
+      "board": 6,
+      "white_start_number": 17,
+      "black_start_number": 10,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (1).jpg"
+    },
+    {
+      "round": 6,
+      "board": 7,
+      "white_start_number": 16,
+      "black_start_number": 11,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (1).jpg"
+    },
+    {
+      "round": 6,
+      "board": 8,
+      "white_start_number": 5,
+      "black_start_number": 4,
+      "white_score": 0,
+      "black_score": 1,
+      "source": "Image (1).jpg"
+    },
+    {
+      "round": 6,
+      "board": 9,
+      "white_start_number": 12,
+      "black_start_number": 6,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (1).jpg"
+    },
+    {
+      "round": 7,
+      "board": 1,
+      "white_start_number": 1,
+      "black_start_number": 3,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (2).jpg"
+    },
+    {
+      "round": 7,
+      "board": 2,
+      "white_start_number": 7,
+      "black_start_number": 17,
+      "white_score": 0,
+      "black_score": 1,
+      "source": "Image (2).jpg"
+    },
+    {
+      "round": 7,
+      "board": 3,
+      "white_start_number": 14,
+      "black_start_number": 8,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (2).jpg"
+    },
+    {
+      "round": 7,
+      "board": 4,
+      "white_start_number": 9,
+      "black_start_number": 16,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (2).jpg"
+    },
+    {
+      "round": 7,
+      "board": 5,
+      "white_start_number": 15,
+      "black_start_number": 18,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (2).jpg"
+    },
+    {
+      "round": 7,
+      "board": 6,
+      "white_start_number": 11,
+      "black_start_number": 13,
+      "white_score": 0,
+      "black_score": 1,
+      "source": "Image (2).jpg"
+    },
+    {
+      "round": 7,
+      "board": 7,
+      "white_start_number": 2,
+      "black_start_number": 12,
+      "white_score": 0,
+      "black_score": 1,
+      "source": "Image (2).jpg"
+    },
+    {
+      "round": 7,
+      "board": 8,
+      "white_start_number": 4,
+      "black_start_number": 6,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (2).jpg"
+    },
+    {
+      "round": 7,
+      "board": 9,
+      "white_start_number": 10,
+      "black_start_number": 5,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (2).jpg"
+    }
+  ],
+  "missing_rounds": [
+    2
+  ]
+}

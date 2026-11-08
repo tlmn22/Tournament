@@ -39,19 +39,19 @@ export function MatchTable({ matches, teams, events = [], organizations = [], ac
 }) {
   const names = new Map(teams.map(team => [team.id, team.name]));
   const logo = (id: string) => organizations.find(org => org.id === teams.find(team => team.id === id)?.company_id)?.logo_url;
-  return <div className="tp-table-scroll" role="region" aria-label="Тоглолтын хүснэгт" tabIndex={0}>
-    <table className="tp-matches-table">
+  return <div className={"tp-table-scroll tp-match-list" + (events.length > 1 ? " has-events" : "")} role="region" aria-label="Тоглолтын хүснэгт" tabIndex={0}>
+    <table className="tp-matches-table" role="table">
       <caption className="sr-only">Тоглолтууд: багууд, оноо, шат болон төлөв</caption>
-      <thead><tr><th scope="col">№</th>{events.length > 1 && <th scope="col">Ангилал</th>}<th scope="col" className="tp-match-home">Эхний баг</th><th scope="col" className="tp-table-score">Оноо</th><th scope="col">Хоёр дахь баг</th><th scope="col">Шат / тойрог</th><th scope="col">Төлөв</th>{actions && <th scope="col">Үйлдэл</th>}</tr></thead>
-      <tbody>{matches.map((match, index) => <tr key={match.id} className={match.status === "live" ? "is-live" : undefined}>
-        <th scope="row" className="tp-row-number">{index + 1}</th>
-        {events.length > 1 && <td>{events.find(e => e.id === match.tournament_event_id)?.name || "—"}</td>}
-        <td className="tp-table-team tp-match-home"><span className="festival-team-name"><span className="tp-match-team-label">{names.get(match.home_team_id) || "Баг тодорхойгүй"}</span><TeamLogo name={names.get(match.home_team_id) || "Баг тодорхойгүй"} url={logo(match.home_team_id)} /></span></td>
-        <td className="tp-table-score"><span className={match.home_score !== null && match.away_score !== null && match.home_score > match.away_score ? "tp-score-leading" : undefined}>{match.home_score ?? "—"}</span><span className="tp-score-divider">:</span><span className={match.home_score !== null && match.away_score !== null && match.away_score > match.home_score ? "tp-score-leading" : undefined}>{match.away_score ?? "—"}</span></td>
-        <td className="tp-table-team"><span className="festival-team-name"><TeamLogo name={names.get(match.away_team_id) || "Баг тодорхойгүй"} url={logo(match.away_team_id)} /><span className="tp-match-team-label">{names.get(match.away_team_id) || "Баг тодорхойгүй"}</span></span></td>
-        <td>{match.round || "—"}</td>
-        <td><span className={"tp-badge match-" + match.status}>{match.status === "live" && <span className="tiny-dot" />}{matchStatuses[match.status]}</span></td>
-        {actions && <td><div className="tp-table-actions">{actions(match)}</div></td>}
+      <thead role="rowgroup"><tr role="row"><th role="columnheader" scope="col">№</th>{events.length > 1 && <th role="columnheader" scope="col">Ангилал</th>}<th role="columnheader" scope="col" className="tp-match-home">Эхний баг</th><th role="columnheader" scope="col" className="tp-table-score">Оноо</th><th role="columnheader" scope="col">Хоёр дахь баг</th><th role="columnheader" scope="col">Шат / тойрог</th><th role="columnheader" scope="col">Төлөв</th>{actions && <th role="columnheader" scope="col">Үйлдэл</th>}</tr></thead>
+      <tbody role="rowgroup">{matches.map((match, index) => <tr role="row" key={match.id} className={match.status === "live" ? "is-live" : undefined}>
+        <th role="rowheader" scope="row" className="tp-row-number">{index + 1}</th>
+        {events.length > 1 && <td role="cell" className="tp-match-event-label">{events.find(e => e.id === match.tournament_event_id)?.name || "—"}</td>}
+        <td role="cell" className="tp-table-team tp-match-home"><span className="festival-team-name"><span className="tp-match-team-label">{names.get(match.home_team_id) || "Баг тодорхойгүй"}</span><TeamLogo name={names.get(match.home_team_id) || "Баг тодорхойгүй"} url={logo(match.home_team_id)} /></span></td>
+        <td role="cell" className="tp-table-score"><span className={match.home_score !== null && match.away_score !== null && match.home_score > match.away_score ? "tp-score-leading" : undefined}>{match.home_score ?? "—"}</span><span className="tp-score-divider">:</span><span className={match.home_score !== null && match.away_score !== null && match.away_score > match.home_score ? "tp-score-leading" : undefined}>{match.away_score ?? "—"}</span></td>
+        <td role="cell" className="tp-table-team tp-match-away"><span className="festival-team-name"><TeamLogo name={names.get(match.away_team_id) || "Баг тодорхойгүй"} url={logo(match.away_team_id)} /><span className="tp-match-team-label">{names.get(match.away_team_id) || "Баг тодорхойгүй"}</span></span></td>
+        <td role="cell" className="tp-match-round">{match.round || "—"}</td>
+        <td role="cell" className="tp-match-status"><span className={"tp-badge match-" + match.status}>{match.status === "live" && <span className="tiny-dot" />}{matchStatuses[match.status]}</span></td>
+        {actions && <td role="cell" className="tp-match-actions-cell"><div className="tp-table-actions">{actions(match)}</div></td>}
       </tr>)}</tbody>
     </table>
   </div>;

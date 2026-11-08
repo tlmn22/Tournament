@@ -1,0 +1,371 @@
+{
+  "tournament_title_source": "Бөөрөлжүүт Cup 2026",
+  "sport": "chess",
+  "category": "women",
+  "source": "image (1).png",
+  "status": "transcribed_not_imported",
+  "date": null,
+  "notes": [
+    "Final standings preserved from final ranking image.",
+    "Round 1 board 2 corrected to 1-0: user confirmed Enkhtuya B won; original printed result 0-1 preserved in source score fields.",
+    "Printed date 2026/03/17; actual event date unconfirmed."
+  ],
+  "standings": [
+    {
+      "rank": 1,
+      "start_number": 3,
+      "name": "Төгсжаргал Р",
+      "club_source": "ЦСҮГ, засварын хэлтэс",
+      "organization_name": "ЦСҮГ",
+      "organization_id": null,
+      "points": 7
+    },
+    {
+      "rank": 2,
+      "start_number": 1,
+      "name": "Намжилмаа С",
+      "club_source": "ТҮГ, ХЭМАББОХ",
+      "organization_name": "ТҮГ",
+      "organization_id": null,
+      "points": 6
+    },
+    {
+      "rank": 3,
+      "start_number": 2,
+      "name": "Энхтуяа Б",
+      "club_source": "ТҮГ, ХЭМАББОХ",
+      "organization_name": "ТҮГ",
+      "organization_id": null,
+      "points": 5
+    },
+    {
+      "rank": 4,
+      "start_number": 7,
+      "name": "Гончигсүрэн Б",
+      "club_source": "УУГ, Уул уурхайн ашиглалтын хэлтэс",
+      "organization_name": "УУГ",
+      "organization_id": null,
+      "points": 3
+    },
+    {
+      "rank": 5,
+      "start_number": 4,
+      "name": "Тэгшзаяа Ү",
+      "club_source": "ЦСҮГ- ХАБ",
+      "organization_name": "ЦСҮГ",
+      "organization_id": null,
+      "points": 3
+    },
+    {
+      "rank": 6,
+      "start_number": 6,
+      "name": "Болормаа Л",
+      "club_source": "УУГ, Уул уурхайн ашиглалтын хэлтэс",
+      "organization_name": "УУГ",
+      "organization_id": null,
+      "points": 2
+    },
+    {
+      "rank": 7,
+      "start_number": 8,
+      "name": "Уранцэцэг Б",
+      "club_source": "УУГ, засварын хэлтэс",
+      "organization_name": "УУГ",
+      "organization_id": null,
+      "points": 2
+    },
+    {
+      "rank": 8,
+      "start_number": 5,
+      "name": "Ундрам П",
+      "club_source": "ЦСҮГ",
+      "organization_name": "ЦСҮГ",
+      "organization_id": null,
+      "points": 0
+    }
+  ],
+  "games": [
+    {
+      "round": 1,
+      "board": 1,
+      "white_start_number": 1,
+      "black_start_number": 8,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (9).jpg",
+      "status": "confirmed_from_image"
+    },
+    {
+      "round": 1,
+      "board": 2,
+      "white_start_number": 2,
+      "black_start_number": 7,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (9).jpg",
+      "status": "user_confirmed_correction",
+      "source_white_score": 0,
+      "source_black_score": 1
+    },
+    {
+      "round": 1,
+      "board": 3,
+      "white_start_number": 3,
+      "black_start_number": 6,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (9).jpg",
+      "status": "confirmed_from_image"
+    },
+    {
+      "round": 1,
+      "board": 4,
+      "white_start_number": 4,
+      "black_start_number": 5,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (9).jpg",
+      "status": "confirmed_from_image"
+    },
+    {
+      "round": 2,
+      "board": 1,
+      "white_start_number": 8,
+      "black_start_number": 5,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (9).jpg",
+      "status": "confirmed_from_image"
+    },
+    {
+      "round": 2,
+      "board": 2,
+      "white_start_number": 6,
+      "black_start_number": 4,
+      "white_score": 0,
+      "black_score": 1,
+      "source": "Image (9).jpg",
+      "status": "confirmed_from_image"
+    },
+    {
+      "round": 2,
+      "board": 3,
+      "white_start_number": 7,
+      "black_start_number": 3,
+      "white_score": 0,
+      "black_score": 1,
+      "source": "Image (9).jpg",
+      "status": "confirmed_from_image"
+    },
+    {
+      "round": 2,
+      "board": 4,
+      "white_start_number": 1,
+      "black_start_number": 2,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (9).jpg",
+      "status": "confirmed_from_image"
+    },
+    {
+      "round": 3,
+      "board": 1,
+      "white_start_number": 2,
+      "black_start_number": 8,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (9).jpg",
+      "status": "confirmed_from_image"
+    },
+    {
+      "round": 3,
+      "board": 2,
+      "white_start_number": 3,
+      "black_start_number": 1,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (9).jpg",
+      "status": "confirmed_from_image"
+    },
+    {
+      "round": 3,
+      "board": 3,
+      "white_start_number": 4,
+      "black_start_number": 7,
+      "white_score": 0,
+      "black_score": 1,
+      "source": "Image (9).jpg",
+      "status": "confirmed_from_image"
+    },
+    {
+      "round": 3,
+      "board": 4,
+      "white_start_number": 5,
+      "black_start_number": 6,
+      "white_score": 0,
+      "black_score": 1,
+      "source": "Image (9).jpg",
+      "status": "confirmed_from_image"
+    },
+    {
+      "round": 4,
+      "board": 1,
+      "white_start_number": 8,
+      "black_start_number": 6,
+      "white_score": 0,
+      "black_score": 1,
+      "source": "Image (9).jpg",
+      "status": "confirmed_from_image"
+    },
+    {
+      "round": 4,
+      "board": 2,
+      "white_start_number": 7,
+      "black_start_number": 5,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (9).jpg",
+      "status": "confirmed_from_image"
+    },
+    {
+      "round": 4,
+      "board": 3,
+      "white_start_number": 1,
+      "black_start_number": 4,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (9).jpg",
+      "status": "confirmed_from_image"
+    },
+    {
+      "round": 4,
+      "board": 4,
+      "white_start_number": 2,
+      "black_start_number": 3,
+      "white_score": 0,
+      "black_score": 1,
+      "source": "Image (9).jpg",
+      "status": "confirmed_from_image"
+    },
+    {
+      "round": 5,
+      "board": 1,
+      "white_start_number": 3,
+      "black_start_number": 8,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (9).jpg",
+      "status": "confirmed_from_image"
+    },
+    {
+      "round": 5,
+      "board": 2,
+      "white_start_number": 4,
+      "black_start_number": 2,
+      "white_score": 0,
+      "black_score": 1,
+      "source": "Image (9).jpg",
+      "status": "confirmed_from_image"
+    },
+    {
+      "round": 5,
+      "board": 3,
+      "white_start_number": 5,
+      "black_start_number": 1,
+      "white_score": 0,
+      "black_score": 1,
+      "source": "Image (9).jpg",
+      "status": "confirmed_from_image"
+    },
+    {
+      "round": 5,
+      "board": 4,
+      "white_start_number": 6,
+      "black_start_number": 7,
+      "white_score": 0,
+      "black_score": 1,
+      "source": "Image (9).jpg",
+      "status": "confirmed_from_image"
+    },
+    {
+      "round": 6,
+      "board": 1,
+      "white_start_number": 8,
+      "black_start_number": 7,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (9).jpg",
+      "status": "confirmed_from_image"
+    },
+    {
+      "round": 6,
+      "board": 2,
+      "white_start_number": 1,
+      "black_start_number": 6,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (9).jpg",
+      "status": "confirmed_from_image"
+    },
+    {
+      "round": 6,
+      "board": 3,
+      "white_start_number": 2,
+      "black_start_number": 5,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (9).jpg",
+      "status": "confirmed_from_image"
+    },
+    {
+      "round": 6,
+      "board": 4,
+      "white_start_number": 3,
+      "black_start_number": 4,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (9).jpg",
+      "status": "confirmed_from_image"
+    },
+    {
+      "round": 7,
+      "board": 1,
+      "white_start_number": 4,
+      "black_start_number": 8,
+      "white_score": 1,
+      "black_score": 0,
+      "source": "Image (9).jpg",
+      "status": "confirmed_from_image"
+    },
+    {
+      "round": 7,
+      "board": 2,
+      "white_start_number": 5,
+      "black_start_number": 3,
+      "white_score": 0,
+      "black_score": 1,
+      "source": "Image (9).jpg",
+      "status": "confirmed_from_image"
+    },
+    {
+      "round": 7,
+      "board": 3,
+      "white_start_number": 6,
+      "black_start_number": 2,
+      "white_score": 0,
+      "black_score": 1,
+      "source": "Image (9).jpg",
+      "status": "confirmed_from_image"
+    },
+    {
+      "round": 7,
+      "board": 4,
+      "white_start_number": 7,
+      "black_start_number": 1,
+      "white_score": 0,
+      "black_score": 1,
+      "source": "Image (9).jpg",
+      "status": "confirmed_from_image"
+    }
+  ]
+}

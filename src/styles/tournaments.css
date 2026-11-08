@@ -215,7 +215,7 @@
 .admin-next { margin-top:24px; }
 .admin-sport-label { color:var(--muted); font-size:13px; margin:-6px 0 24px; }
 
-/* Matches stay tabular at every viewport; only the table scrolls on small screens. */
+/* Desktop match table; phone card layout is defined below. */
 .tp-table-scroll { width:100%; min-width:0; overflow-x:auto; border:1px solid var(--line); border-radius:12px; background:white; }
 .tp-matches-table { width:100%; min-width:680px; border-collapse:collapse; text-align:left; font-size:12px; }
 .tp-matches-table th,.tp-matches-table td { padding:18px 16px; border-bottom:1px solid var(--line); vertical-align:middle; }
@@ -402,4 +402,50 @@ td.tp-table-score { font-size:18px; font-weight:800; }
   .tp-directory-dates,.tp-directory-date-heading { display:none; }
   .tp-directory-table th,.tp-directory-table td { padding-inline:14px; }
   .tp-directory-number,.tp-directory-arrow { display:none; }
+}
+
+/* One match per card on phones, using the same accessible table and score cells. */
+@media(max-width:760px) {
+  .tp-match-list { position:relative; overflow:visible; border:0; border-radius:0; background:transparent; }
+  .tp-match-list .tp-matches-table { display:block; width:100%; min-width:0; }
+  .tp-match-list .tp-matches-table thead { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; }
+  .tp-match-list .tp-matches-table tbody { display:grid; gap:12px; }
+  .tp-match-list .tp-matches-table tbody tr {
+    position:relative; display:grid;
+    grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+    grid-template-areas:"event event status" "home score away" "round round round";
+    align-items:center; gap:16px 10px; padding:16px 14px;
+    border:1px solid var(--line); border-radius:12px; background:white;
+  }
+  .tp-match-list .tp-matches-table tbody tr.is-live { border-color:#b1c99a; background:#f5faef; }
+  .tp-match-list .tp-matches-table tbody tr > * { min-width:0; max-width:none; padding:0; border:0; }
+  .tp-match-list .tp-matches-table .tp-row-number { grid-area:event; width:auto; text-align:left; font-size:11px; }
+  .tp-match-list:not(.has-events) .tp-row-number::before { content:"№ "; }
+  .tp-match-list.has-events .tp-row-number { position:absolute; width:1px; height:1px; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; }
+  .tp-match-list .tp-match-event-label { grid-area:event; font-size:11px; line-height:1.6; color:var(--muted); overflow-wrap:anywhere; }
+  .tp-match-list .tp-match-status { grid-area:status; justify-self:end; text-align:right; }
+  .tp-match-list .tp-match-status .tp-badge { max-width:100%; white-space:normal; font-size:9px; line-height:1.4; text-align:center; }
+  .tp-match-list .tp-match-home { grid-area:home; }
+  .tp-match-list .tp-match-away { grid-area:away; }
+  .tp-match-list .tp-table-team { align-self:start; font-size:12px; line-height:1.6; text-align:center; }
+  .tp-match-list .festival-team-name { flex-direction:column; align-items:center; justify-content:flex-start; gap:9px; }
+  .tp-match-list .festival-logo { order:-1; width:42px; height:42px; flex-basis:42px; border-radius:10px; }
+  .tp-match-list .tp-match-team-label { width:100%; overflow-wrap:anywhere; word-break:normal; }
+  .tp-match-list .tp-matches-table .tp-table-score { grid-area:score; align-self:start; padding-top:5px; font-size:22px; line-height:32px; letter-spacing:-.5px; }
+  .tp-match-list .tp-score-divider { padding-inline:5px; }
+  .tp-match-list .tp-match-round { grid-area:round; padding-top:12px !important; border-top:1px solid var(--line) !important; font-size:10px; line-height:1.6; color:var(--muted); overflow-wrap:anywhere; }
+  .tp-match-list .tp-match-actions-cell { grid-column:1/-1; grid-row:4; }
+  .tp-match-list .tp-table-actions { min-width:0; justify-content:flex-end; gap:12px; }
+  .tp-match-list .tp-table-actions button { min-height:36px; }
+
+  .tp-public-controls { flex-wrap:wrap; gap:0; margin-bottom:20px; }
+  .tp-public-controls .tp-tabs { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); flex-basis:100%; gap:6px; overflow:visible; border:0; margin-bottom:6px; }
+  .tp-public-controls .tp-tabs button { min-width:0; min-height:42px; padding:10px 6px; border:1px solid var(--line); border-radius:7px; background:white; font-size:11px; line-height:1.4; white-space:normal; }
+  .tp-public-controls .tp-tabs button[aria-pressed=true] { background:var(--ink); color:white; border-color:var(--ink); }
+  .tp-public-controls .tp-refresh { margin:8px 0 0 auto; min-height:36px; }
+}
+@media(max-width:360px) {
+  .tp-match-list .tp-matches-table tbody tr { padding:14px 12px; gap:14px 8px; }
+  .tp-match-list .tp-matches-table .tp-table-score { font-size:19px; }
+  .tp-match-list .tp-score-divider { padding-inline:3px; }
 }
