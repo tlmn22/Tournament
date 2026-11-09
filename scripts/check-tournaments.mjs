@@ -225,7 +225,7 @@ await page.getByRole("button",{name:"Бүх төрлийн оролцоо",exact
 await page.getByRole("heading", { name: "Нийт оноо", exact: true }).waitFor();
 const standings = page.getByRole("region", { name: "Бүх спортын оролцооны хүснэгт" });
 await expect(standings.locator("tbody tr")).toHaveCount(2);
-await expect(standings.locator(".tp-standing-total")).toHaveText(["Нийт", "—", "—"]);
+await expect(standings.locator(".tp-standing-total")).toHaveText(["Нийт оноо", "—", "—"]);
 await expect(standings.getByText("1-р байр", { exact: true })).toHaveCount(0);
 const basketball = tables.tournament_events.find(e => e.sport === "basketball");
 const volleyball = tables.tournament_events.find(e => e.sport === "volleyball");
