@@ -26,6 +26,8 @@ export function PublicTournament({ id }: { id: string }) {
     window.addEventListener("focus", refresh);
     return () => { window.clearInterval(timer); window.removeEventListener("focus", refresh); };
   }, [reload]);
+  const name = data?.tournament.name;
+  useEffect(() => { if (name) document.title = name + " | temtseen.app"; }, [name]);
   if (pending && !data) return <Notice>Тэмцээнийг ачаалж байна…</Notice>;
   if (error) return <Notice error>{error} <button onClick={reload}>Дахин оролдох</button></Notice>;
   if (!data) return <Empty title="Тэмцээн олдсонгүй.">Холбоос буруу эсвэл тэмцээн нийтлэгдээгүй байна. Нийтэлсэн тэмцээнүүдийг жагсаалтаас үзээрэй.</Empty>;
