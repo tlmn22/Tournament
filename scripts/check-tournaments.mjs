@@ -291,22 +291,13 @@ await page.screenshot({ path: ".preview/company-points-admin.png", fullPage: tru
 await page.getByRole("button", { name: "Засахаа болих", exact: true }).click();
 
 await page.screenshot({path:".preview/festival-participation.png",fullPage:true});
-await page.getByRole("button",{name:"Нийтлэлүүд",exact:true}).click();
-
-await page.getByLabel("Нийтлэлийн гарчиг").fill("Наадмын дурсамж");
-await page.getByLabel("Нийтлэлийн нүүр зураг",{exact:true}).setInputFiles({name:"cover.png",mimeType:"image/png",buffer:png});
-await page.getByAltText("Нийтлэлийн нүүр зураг — урьдчилан харах").waitFor();
-await page.getByLabel("Нийтлэлд зураг нэмэх",{exact:true}).setInputFiles({name:"moment.png",mimeType:"image/png",buffer:png});
-await page.getByText("Зураг 1",{exact:true}).waitFor();
-await page.getByLabel("Нийтлэлийн агуулга").fill("## Онцлох мөч\n\nБүх багтаа баярлалаа.");
-await page.getByRole("button",{name:"Нийтлэл хадгалах",exact:true}).click();
-await page.getByRole("heading",{name:"Наадмын дурсамж",exact:true}).waitFor();
-assert.equal(tables.tournament_articles[0].status,"draft");
-await page.getByRole("button",{name:"Нийтлэл засах",exact:true}).click();
-await page.getByLabel("Нийтлэлийн төлөв").selectOption("published");
-await page.getByRole("button",{name:"Нийтлэл хадгалах",exact:true}).click();
-await page.getByRole("button",{name:"Нийтлэл засах",exact:true}).waitFor();
 await mkdir(".preview", { recursive: true });
+await page.getByRole("button", { name: "Тохиргоо", exact: true }).click();
+await page.getByLabel("Cover зураг", { exact: true }).setInputFiles({ name: "cover.png", mimeType: "image/png", buffer: png });
+await page.getByAltText("Cover зураг — урьдчилан харах").waitFor();
+await page.getByRole("button", { name: "Өөрчлөлт хадгалах", exact: true }).click();
+await page.getByText("Мэдээлэл хадгалагдлаа.").waitFor();
+assert.match(tables.tournaments.find(t => t.id === id).cover_url, /^https:\/\//);
 
   await page.screenshot({ path: ".preview/admin-tournament.png", fullPage: true });
   tables.tournament_fixtures.push(
@@ -318,6 +309,9 @@ await mkdir(".preview", { recursive: true });
   const publicPage = await visitor.newPage();
   await publicPage.goto(base + "/tournaments/" + id);
   await publicPage.getByRole("heading", { name: "Хамтын цом 2026" }).waitFor();
+  await publicPage.locator(".tp-event-cover img").waitFor();
+  await expect(publicPage.locator(".tp-event-hero")).toHaveCount(0);
+  await publicPage.screenshot({ path: ".preview/public-cover.png" });
 
 
   // The landing view must include finished, live, and upcoming matches.
@@ -351,12 +345,6 @@ for (const width of [320, 390, 1440]) {
 await publicPage.screenshot({ path: ".preview/company-points-public.png", fullPage: true });
 assert.deepEqual((await new AxeBuilder({ page: publicPage }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze()).violations.map(v => v.id), []);
 
-await publicPage.getByRole("button",{name:"Нийтлэлүүд",exact:true}).click();
-await publicPage.getByRole("link").filter({hasText:"Наадмын дурсамж"}).click();
-
-await publicPage.getByRole("heading",{name:"Онцлох мөч",exact:true}).waitFor();
-assert.equal(await publicPage.locator(".festival-story img").count(),2);
-await publicPage.screenshot({path:".preview/festival-article.png",fullPage:true});
 await publicPage.goto(base + "/tournaments/" + id);
 await publicPage.getByRole("button", { name: "Үр дүн", exact: true }).click();
   await expect(publicPage.getByRole("region", { name: "Тоглолтын хүснэгт", exact: true }).locator("tbody tr")).toHaveCount(1);
@@ -407,7 +395,9 @@ await publicPage.getByRole("button", { name: "Үр дүн", exact: true }).click
     assert.deepEqual(results.violations.map(v => ({ id: v.id, nodes: v.nodes.map(n => n.target) })),[]);
   }
   await publicPage.getByRole("button", { name: "Багууд", exact: true }).click();
-  await publicPage.getByRole("heading", { name: "Баг А", exact: true }).waitFor();
+  await publicPage.locator(".tp-participant summary").filter({ hasText: tables.companies[0].name }).click();
+  await publicPage.locator(".tp-participant-event li").filter({ hasText: "Баг А" }).first().waitFor();
+  await publicPage.screenshot({ path: ".preview/public-participants.png", fullPage: true });
   await page.getByRole("button", { name: "Нийтлэлээс буулгах" }).click();
   await page.getByRole("button", { name: "Нийтлэх", exact: true }).waitFor();
   await publicPage.reload();

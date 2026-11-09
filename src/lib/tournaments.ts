@@ -2,7 +2,7 @@ import { getSupabase } from "./supabase";
 
 export type Tournament = {
   id: string; owner_id: string; name: string; description: string | null;
-  status: string; start_date: string | null; end_date: string | null; created_at: string;
+  status: string; start_date: string | null; end_date: string | null; created_at: string; cover_url?: string | null;
 };
 export type TournamentEvent = { id: string; tournament_id: string; name: string; sport: string; format: string; results_note?: string | null };
 export type Team = { id: string; tournament_event_id: string; company_id: string | null; name: string; final_place?: number | null; result_points?: number | null; group_name?: string | null };
