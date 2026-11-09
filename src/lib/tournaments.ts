@@ -5,7 +5,7 @@ export type Tournament = {
   status: string; start_date: string | null; end_date: string | null; created_at: string; cover_url?: string | null;
 };
 export type TournamentEvent = { id: string; tournament_id: string; name: string; sport: string; format: string; results_note?: string | null };
-export type Team = { id: string; tournament_event_id: string; company_id: string | null; name: string; final_place?: number | null; result_points?: number | null; group_name?: string | null };
+export type Team = { id: string; tournament_event_id: string; company_id: string | null; name: string; final_place?: number | null; result_points?: number | null; group_name?: string | null; result_details?: Partial<Record<"games" | "wins" | "draws" | "losses" | "mp" | "ede" | "bh_gp", number>> | null };
 export type Organization = { id: string; tournament_id: string; name: string; logo_url: string | null };
 export type CompanyEventPoints = { tournament_id: string; company_id: string; tournament_event_id: string; points: number };
 export type Article = { id: string; tournament_id: string; title: string; body: string; cover_url: string | null; image_urls: string[]; status: "draft" | "published"; published_at: string | null; created_at: string };

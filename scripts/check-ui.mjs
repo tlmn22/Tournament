@@ -48,6 +48,7 @@ await page.clock.install({ time: new Date("2026-11-06T16:30:00Z") });
 const table = () => page.getByRole("table");
 const rows = () => table().locator("tbody tr");
 const rowFor = name => rows().filter({ has: page.getByRole("link", { name, exact: true }) });
+const chip = label => page.getByRole("group", { name: "Тэмцээний төлөв" }).getByRole("button", { name: new RegExp("^" + label + " \\d+$") });
 const openHome = async () => {
   await page.goto(baseURL);
   await expect(page.getByRole("heading", { name: "Тэмцээнүүд", exact: true })).toBeVisible();
@@ -66,25 +67,29 @@ try {
   await expect(rowFor(upcoming.name)).toContainText("Удахгүй");
   await expect(rowFor(undated.name)).toContainText("Хугацаа товлоогүй");
   await expect(page.locator(".hero,.tp-directory-hero,.tp-directory-cta")).toHaveCount(0);
+  // Ongoing tournaments are also featured above the directory.
+  await expect(page.locator(".tp-dir-feature")).toHaveCount(2);
+  await expect(page.locator(".tp-dir-feature").first()).toContainText("Явагдаж байна");
   await expect(page.locator('a[href^="/#"]')).toHaveCount(0);
 
-  await page.getByRole("button", { name: "Дараагийн хуудас" }).click();
+  await page.getByRole("button", { name: "Дараах", exact: true }).click();
   await expect(rows()).toHaveCount(4);
-  await expect(page.getByRole("button", { name: "Дараагийн хуудас" })).toBeDisabled();
+  await expect(page.getByRole("button", { name: "Дараах", exact: true })).toBeDisabled();
   await page.getByLabel("Тэмцээн хайх").fill("Бодь");
   await expect(rows()).toHaveCount(1);
   await expect(rows().first()).toContainText(ongoing.name);
   await page.getByLabel("Тэмцээн хайх").fill("олдохгүй нэр");
   await expect(table()).toContainText("Хайлт, шүүлтэд тохирох тэмцээн олдсонгүй.");
   await page.getByLabel("Тэмцээн хайх").fill("");
-  await page.getByLabel("Тэмцээний төлөв").selectOption("ongoing");
+  await chip("Явагдаж байна").click();
   await expect(rows()).toHaveCount(2);
-  await page.getByLabel("Тэмцээний төлөв").selectOption("completed");
+  await chip("Дууссан").click();
   await expect(rows()).toHaveCount(20);
-  await page.getByLabel("Тэмцээний төлөв").selectOption("upcoming");
+  await chip("Удахгүй").click();
   await expect(rows()).toHaveCount(1);
   await expect(rows().first()).toContainText(upcoming.name);
-  await page.getByLabel("Тэмцээний төлөв").selectOption("all");
+  await expect(chip("Удахгүй")).toHaveAttribute("aria-pressed", "true");
+  await chip("Бүгд").click();
   await page.getByRole("button", { name: "Тэмцээн", exact: true }).click();
   await expect(page.getByRole("columnheader", { name: "Тэмцээн", exact: true })).toHaveAttribute("aria-sort", "ascending");
   await expect(rows().first()).toContainText("Архив 01");
@@ -100,7 +105,7 @@ try {
   await page.getByRole("link", { name: "Бүх тэмцээн", exact: true }).first().click();
   await expect(page).toHaveURL(baseURL + "/tournaments");
   await expect(table()).toBeVisible();
-  const link = page.getByRole("link", { name: ongoing.name, exact: true });
+  const link = table().getByRole("link", { name: ongoing.name, exact: true });
   await link.focus();
   await page.keyboard.press("Enter");
   await expect(page).toHaveURL(baseURL + "/tournaments/" + ongoing.id);

@@ -314,9 +314,13 @@ assert.match(tables.tournaments.find(t => t.id === id).cover_url, /^https:\/\//)
   await publicPage.screenshot({ path: ".preview/public-cover.png" });
 
 
-  // The landing view must include finished, live, and upcoming matches.
+  // The landing view is the team standings with the podium on top.
+  await expect(publicPage.getByRole("button", { name: "Багийн дүн", exact: true })).toHaveAttribute("aria-pressed", "true");
+  await expect(publicPage.locator(".tp-podium-step")).toHaveCount(2);
+  await expect(publicPage.locator(".tp-podium-step.is-first")).toContainText("Оффис");
+  // The schedule includes finished, live, and upcoming matches.
+  await publicPage.getByRole("button", { name: "Тоглолтууд", exact: true }).click();
   const publicMatches = publicPage.getByRole("region", { name: "Тоглолтын хүснэгт", exact: true });
-  await expect(publicPage.getByRole("button", { name: "Тоглолтууд", exact: true })).toHaveAttribute("aria-pressed", "true");
   await expect(publicMatches.locator("tbody tr")).toHaveCount(3);
   await expect(publicMatches.getByText("Дууссан", { exact: true })).toHaveCount(1);
   await expect(publicMatches.getByText("Явагдаж байна", { exact: true })).toHaveCount(1);
