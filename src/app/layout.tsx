@@ -4,6 +4,7 @@ import "@fontsource-variable/manrope";
 import "./globals.css";
 import "../styles/responsive.css";
 import "../styles/tournaments.css";
+import "../styles/theme-neon.css";
 
 export const metadata: Metadata = {
   title: {

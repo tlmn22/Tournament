@@ -319,18 +319,24 @@ assert.match(tables.tournaments.find(t => t.id === id).cover_url, /^https:\/\//)
   await expect(publicPage.locator(".tp-podium-step")).toHaveCount(2);
   await expect(publicPage.locator(".tp-podium-step.is-first")).toContainText("Оффис");
   // The schedule includes finished, live, and upcoming matches.
-  await publicPage.getByRole("button", { name: "Тоглолтууд", exact: true }).click();
+  // The sports tab lists every event; opening one shows only that event's details.
+  await publicPage.getByRole("button", { name: "Спорт төрлүүд", exact: true }).click();
+  const sportCard = name => publicPage.locator(".tp-sport-card", { hasText: name });
+  await sportCard("Сагсан бөмбөг · Эрэгтэй").click();
+  await publicPage.locator(".tp-sport-head").getByRole("heading", { name: "Сагсан бөмбөг · Эрэгтэй" }).waitFor();
   const publicMatches = publicPage.getByRole("region", { name: "Тоглолтын хүснэгт", exact: true });
   await expect(publicMatches.locator("tbody tr")).toHaveCount(3);
   await expect(publicMatches.getByText("Дууссан", { exact: true })).toHaveCount(1);
   await expect(publicMatches.getByText("Явагдаж байна", { exact: true })).toHaveCount(1);
   await expect(publicMatches.getByText("Товлосон", { exact: true })).toHaveCount(1);
   await expect(publicMatches.getByText("48", { exact: true })).toHaveCount(1);
-  await publicPage.getByRole("button", { name: "Волейбол · Эмэгтэй", exact: true }).click();
+  await publicPage.getByRole("button", { name: "Бүх спорт төрөл", exact: true }).click();
+  await sportCard("Волейбол · Эмэгтэй").click();
   await publicPage.getByRole("heading", { name: "Тоглолт хараахан нэмээгүй байна." }).waitFor();
   await expect(publicMatches).toHaveCount(0);
-  await publicPage.getByRole("button", { name: "Бүх ангилал", exact: true }).click();
-  await expect(publicMatches.locator("tbody tr")).toHaveCount(3);
+  await publicPage.getByRole("button", { name: "Бүх спорт төрөл", exact: true }).click();
+  await expect(sportCard("Сагсан бөмбөг · Эрэгтэй")).toHaveCount(1);
+  await expect(publicMatches).toHaveCount(0);
   await publicPage.getByRole("button", { name: "Багийн дүн", exact: true }).click();
 
 await publicPage.getByRole("region",{name:"Бүх спортын оролцооны хүснэгт"}).waitFor();

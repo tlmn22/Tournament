@@ -1,0 +1,156 @@
+/* Neon event theme for public tournament pages (tournaments.theme = 'neon').
+   Applied as body.theme-neon while the page is open; dark night-sky base with
+   cyan → violet → magenta → orange light trails. */
+body.theme-neon {
+  --background: #07041a;
+  --paper: #120c2e;
+  --ink: #f3f1ff;
+  --muted: #a8a3cf;
+  --line: #ffffff1c;
+  --lime: #22d3ee;
+  --neon-cyan: #22d3ee;
+  --neon-blue: #3b82f6;
+  --neon-violet: #8b5cf6;
+  --neon-magenta: #d946ef;
+  --neon-pink: #ff3d9a;
+  --neon-orange: #ff7a18;
+  --neon-surface: #140d34cc;
+  --neon-surface-2: #1c1446;
+  --neon-trail: linear-gradient(90deg, var(--neon-cyan), var(--neon-blue) 30%, var(--neon-magenta) 65%, var(--neon-orange));
+  background: var(--background);
+  color: var(--ink);
+  color-scheme: dark;
+}
+
+/* Light trails behind the content, strongest at the top and bottom edges. */
+body.theme-neon::before {
+  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(900px 380px at 15% 8%, #3b82f633, transparent 70%),
+    radial-gradient(900px 420px at 90% 95%, #d946ef33, transparent 70%),
+    linear-gradient(174deg, transparent 21.6%, #22d3ee55 22%, transparent 22.4%),
+    linear-gradient(176deg, transparent 25.4%, #3b82f666 25.7%, transparent 26%),
+    linear-gradient(173deg, transparent 29%, #8b5cf644 29.5%, transparent 30%),
+    linear-gradient(6deg, transparent 77%, #ff3d9a55 77.4%, transparent 77.8%),
+    linear-gradient(4deg, transparent 81%, #d946ef66 81.3%, transparent 81.6%),
+    linear-gradient(7deg, transparent 85%, #ff7a1844 85.5%, transparent 86%),
+    linear-gradient(180deg, #0b0628 0%, #07041a 45%, #120634 100%);
+  -webkit-mask-image: linear-gradient(180deg, #000 0 38%, #0006 50%, #000 62%);
+  mask-image: linear-gradient(180deg, #000 0 38%, #0006 50%, #000 62%);
+}
+body.theme-neon ::selection { color: #07041a; background: var(--neon-cyan); }
+body.theme-neon :focus-visible { outline-color: var(--neon-cyan); }
+
+/* Header and footer */
+body.theme-neon .site-header { background: #07041ad9; border-bottom-color: var(--line); }
+body.theme-neon .brand-dot { color: var(--neon-pink); }
+body.theme-neon .desktop-nav a, body.theme-neon .login-link { color: var(--muted); }
+body.theme-neon .desktop-nav a:hover, body.theme-neon .desktop-nav .active, body.theme-neon .login-link:hover { color: var(--ink); }
+body.theme-neon .desktop-nav .active::after { background: var(--neon-trail); box-shadow: 0 0 10px #d946ef99; }
+body.theme-neon .button-dark { background: var(--neon-trail); color: #fff; }
+body.theme-neon .menu-toggle { background: transparent; border-color: var(--line); color: var(--ink); }
+body.theme-neon .mobile-nav { background: #0d0826; }
+body.theme-neon .mobile-nav > a:hover { background: #ffffff10; }
+body.theme-neon .mobile-nav .mobile-signup { background: var(--neon-trail); color: #fff; }
+body.theme-neon .footer-bottom { color: var(--muted); }
+body.theme-neon .back-link { color: var(--muted); }
+body.theme-neon .back-link:hover { color: var(--ink); }
+
+/* Event header */
+body.theme-neon .tp-event-hero {
+  background:
+    linear-gradient(172deg, transparent 52%, #22d3ee66 53%, transparent 54.5%),
+    linear-gradient(176deg, transparent 60%, #d946ef77 61%, transparent 62.5%),
+    linear-gradient(170deg, transparent 68%, #ff7a1866 69%, transparent 70.5%),
+    radial-gradient(600px 300px at 85% 20%, #8b5cf655, transparent 70%),
+    linear-gradient(135deg, #120a3a, #07041a 60%, #1a0838);
+  border: 1px solid #ffffff1f;
+  box-shadow: 0 0 0 1px #8b5cf622, 0 24px 60px -20px #8b5cf666;
+  color: var(--ink);
+}
+body.theme-neon .tp-event-hero h1,
+body.theme-neon .tp-event-heading h1 {
+  font-style: italic; font-weight: 850; text-transform: uppercase; letter-spacing: -1px;
+  background: linear-gradient(90deg, #fff 0%, #c7d2fe 35%, #f0abfc 70%, #fdba74 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 0 18px #8b5cf655);
+}
+body.theme-neon .tp-event-kicker { color: var(--neon-pink); text-shadow: 0 0 10px #ff3d9a99; }
+body.theme-neon .tp-event-meta > span,
+body.theme-neon .tp-event-heading .tp-event-meta > span { color: #c9c4ee; }
+body.theme-neon .tp-event-meta svg { color: var(--neon-cyan); }
+body.theme-neon .tp-event-trophy { color: var(--neon-orange); opacity: .35; filter: drop-shadow(0 0 16px #ff7a18); }
+body.theme-neon .tp-event-cover { background: var(--neon-surface-2); box-shadow: 0 24px 60px -24px #8b5cf699; }
+
+/* Tabs, filters, buttons */
+body.theme-neon .tp-tabs { border-bottom-color: var(--line); }
+body.theme-neon .tp-tabs button { color: var(--muted); }
+body.theme-neon .tp-tabs button:hover { color: var(--ink); }
+body.theme-neon .tp-tabs button[aria-pressed=true] { color: #fff; border-bottom-color: var(--neon-magenta); text-shadow: 0 0 12px #d946efaa; }
+/* Phone layout turns the tabs into a grid of pills. */
+body.theme-neon .tp-public-controls .tp-tabs button { background: transparent; }
+@media (max-width: 600px) {
+  body.theme-neon .tp-public-controls .tp-tabs button { background: #ffffff0a; border-color: var(--line); color: #cfcaf2; text-shadow: none; }
+  body.theme-neon .tp-public-controls .tp-tabs button[aria-pressed=true] { background: var(--neon-trail); border-color: transparent; color: #fff; box-shadow: 0 0 16px #8b5cf666; }
+}
+body.theme-neon .tp-refresh { border-color: var(--line); color: var(--muted); }
+body.theme-neon .tp-refresh:hover { color: var(--ink); border-color: #ffffff40; }
+body.theme-neon .tp-event-filters button { background: #ffffff08; border-color: var(--line); color: #cfcaf2; }
+body.theme-neon .tp-event-filters button:hover { border-color: #ffffff40; }
+body.theme-neon .tp-event-filters button[aria-pressed=true] { background: var(--neon-trail); border-color: transparent; color: #fff; box-shadow: 0 0 16px #8b5cf666; }
+body.theme-neon .text-link { color: var(--neon-cyan); }
+
+/* Surfaces */
+body.theme-neon .tp-panel { background: var(--neon-surface); border-color: var(--line); color: var(--ink); backdrop-filter: blur(8px); }
+body.theme-neon .tp-section-title h2 { color: #fff; }
+body.theme-neon .tp-notice { background: #ffffff0d; color: #d9d5f7; }
+body.theme-neon .tp-error { background: #ff3d9a1f; color: #ffc2dc; }
+body.theme-neon .tp-empty { background: #ffffff08; border-color: #ffffff26; }
+body.theme-neon .tp-empty-icon { background: #8b5cf633; color: #e9d5ff; }
+body.theme-neon .festival-note { color: var(--muted); }
+body.theme-neon .festival-logo { background: #ffffff12; border-color: var(--line); color: #e9d5ff; }
+
+/* Badges */
+body.theme-neon .tp-badge { background: #ffffff12; color: #d6d2f5; }
+body.theme-neon .tp-badge.match-live { background: #ff3d9a26; color: #ff8cc6; box-shadow: 0 0 12px #ff3d9a55; }
+body.theme-neon .tp-badge.match-completed { background: #22d3ee1f; color: #8be9f8; }
+
+/* Tables */
+body.theme-neon .tp-table-scroll { background: var(--neon-surface); border-color: var(--line); }
+body.theme-neon .tp-matches-table thead th,
+body.theme-neon .tp-group-matrix thead th,
+body.theme-neon .participation-table thead :is(.tp-standing-rank,.tp-standing-company) { background: #1d1550; color: #c4bdf5; }
+body.theme-neon .tp-matches-table tbody tr:hover { background: #ffffff08; }
+body.theme-neon .tp-matches-table tbody tr.is-live { background: #ff3d9a14; }
+body.theme-neon .tp-table-score .tp-score-leading,
+body.theme-neon .tp-group-score .tp-score-leading { color: #4ade80; text-shadow: 0 0 10px #4ade8066; }
+body.theme-neon .tp-score-divider, body.theme-neon .tp-group-colon, body.theme-neon .tp-group-pending { color: #7f79a8; }
+body.theme-neon .tp-group-matrix .tp-group-number,
+body.theme-neon .tp-group-matrix .tp-group-team { background: #150e38; }
+body.theme-neon .tp-group-matrix thead .tp-group-number,
+body.theme-neon .tp-group-matrix thead .tp-group-team { background: #1d1550; }
+body.theme-neon .tp-group-matrix .tp-group-self { background: linear-gradient(135deg, #3b82f655, #d946ef55); }
+body.theme-neon .participation-table .tp-standing-total,
+body.theme-neon .tp-final-ranking .tp-final-points { background: #22d3ee14; color: #67e8f9; }
+
+/* Podium */
+body.theme-neon .tp-podium-team strong { color: #fff; }
+body.theme-neon .tp-podium-team span { color: var(--neon-cyan); }
+body.theme-neon .tp-podium-team .festival-logo { background: #fff; }
+body.theme-neon .tp-podium-block { background: linear-gradient(#241a5c, #150e38); border-color: #ffffff1f; box-shadow: inset 0 4px 0 #ffffff14; }
+body.theme-neon .tp-podium-block > span { color: #c4bdf5; }
+body.theme-neon .tp-podium-step.is-first .tp-podium-block { background: linear-gradient(160deg, #3b82f6, #8b5cf6 45%, #d946ef 80%, #ff7a18); border-color: transparent; box-shadow: 0 0 40px -6px #d946ef99; }
+body.theme-neon .tp-podium-step.is-first .tp-podium-block > span { color: #fff; text-shadow: 0 0 18px #fff8; }
+body.theme-neon .tp-podium ol::after { background: var(--neon-trail); box-shadow: 0 0 18px #8b5cf688; }
+
+/* Sport cards and participants */
+body.theme-neon .tp-sport-card:hover { border-color: #d946ef88; box-shadow: 0 0 0 1px #d946ef44, 0 12px 30px -12px #d946ef88; }
+body.theme-neon .tp-sport-card-icon { background: linear-gradient(135deg, #3b82f640, #d946ef40); color: #fff; }
+body.theme-neon .tp-sport-card-winner { color: var(--neon-orange) !important; }
+body.theme-neon .tp-participant-icon, body.theme-neon .tp-sport-card-arrow { color: var(--muted); }
+
+@media (prefers-reduced-motion: reduce) {
+  body.theme-neon .tp-event-hero h1, body.theme-neon .tp-event-heading h1 { filter: none; }
+}
+body.theme-neon .tp-podium { --podium-glow:#d946ef; }
+body.theme-neon .tp-podium-crown { color:#ffb020; filter:drop-shadow(0 0 10px #ff7a18aa); }

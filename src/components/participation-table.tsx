@@ -1,4 +1,5 @@
 "use client";
+import { Crown } from "lucide-react";
 import type { TournamentData } from "@/lib/tournaments";
 import { companyStandings, pointsLabel, type CompanyStanding } from "@/lib/company-points";
 import { TeamLogo } from "./festival-media";
@@ -10,7 +11,7 @@ function Podium({ standings }: { standings: CompanyStanding[] }) {
   const leaders = standings.filter(row => row.rank != null).slice(0, 3);
   if (!leaders.length) return null;
   return <section className="tp-podium" aria-label="Тэргүүлэгчид"><ol>{leaders.map((row, index) => <li key={row.organization.id} className={"tp-podium-step " + podiumPlaces[index]}>
-    <div className="tp-podium-team"><TeamLogo name={row.organization.name} url={row.organization.logo_url} /><strong>{row.organization.name}</strong><span>{pointsLabel(row.total)} оноо</span></div>
+    <div className="tp-podium-team">{index === 0 && <Crown className="tp-podium-crown" size={30} strokeWidth={1.8} aria-hidden="true" />}<span className="tp-podium-logo"><TeamLogo name={row.organization.name} url={row.organization.logo_url} /></span><strong>{row.organization.name}</strong><span>{pointsLabel(row.total)} оноо</span></div>
     <div className="tp-podium-block"><span><span className="sr-only">Байр </span>{row.rank}</span></div>
   </li>)}</ol></section>;
 }

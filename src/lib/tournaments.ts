@@ -2,7 +2,7 @@ import { getSupabase } from "./supabase";
 
 export type Tournament = {
   id: string; owner_id: string; name: string; description: string | null;
-  status: string; start_date: string | null; end_date: string | null; created_at: string; cover_url?: string | null;
+  status: string; start_date: string | null; end_date: string | null; created_at: string; cover_url?: string | null; theme?: string | null;
 };
 export type TournamentEvent = { id: string; tournament_id: string; name: string; sport: string; format: string; results_note?: string | null };
 export type Team = { id: string; tournament_event_id: string; company_id: string | null; name: string; final_place?: number | null; result_points?: number | null; group_name?: string | null; result_details?: Partial<Record<"games" | "wins" | "draws" | "losses" | "mp" | "ede" | "bh_gp", number>> | null };
@@ -15,7 +15,7 @@ export type Fixture = {
   status: "scheduled" | "live" | "completed"; home_score: number | null; away_score: number | null;
 };
 export type TournamentData = { tournament: Tournament; events: TournamentEvent[]; teams: Team[]; organizations: Organization[]; companyPoints: CompanyEventPoints[]; companyPointsUnavailable: boolean; articles: Article[]; articlesUnavailable: boolean; fixtures: Fixture[]; fixturesUnavailable: boolean };
-export const sports: Record<string, string> = { basketball: "Сагсан бөмбөг", volleyball: "Волейбол", football: "Хөлбөмбөг", chess: "Шатар", checkers: "Даам", darts: "Дартс", esports: "Esports", other: "Бусад спорт" };
+export const sports: Record<string, string> = { basketball: "Сагсан бөмбөг", volleyball: "Волейбол", football: "Хөлбөмбөг", chess: "Шатар", checkers: "Даам", darts: "Дартс", bowling: "Боулинг", table_tennis: "Ширээний теннис", esports: "Esports", other: "Бусад спорт" };
 export const matchStatuses = { scheduled: "Товлосон", live: "Явагдаж байна", completed: "Дууссан" };
 export function isId(id: string) { return /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id); }
 export function dataError(error: unknown): string {

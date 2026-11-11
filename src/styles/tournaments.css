@@ -631,3 +631,74 @@ td.tp-table-score { font-size:18px; font-weight:800; }
   .tp-match-list .tp-matches-table .tp-table-score { font-size:19px; }
   .tp-match-list .tp-score-divider { padding-inline:3px; }
 }
+/* Public sport list and per-sport detail */
+.tp-sport-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:14px; margin-bottom:32px; }
+.tp-sport-card { display:flex; align-items:center; gap:16px; padding:20px; text-align:left; font:inherit; color:var(--ink); cursor:pointer; transition:border-color .15s, box-shadow .15s, transform .15s; }
+.tp-sport-card:hover { border-color:#b9c9a6; box-shadow:0 8px 22px #1c302710; transform:translateY(-1px); }
+.tp-sport-card:focus-visible { outline:2px solid var(--ink); outline-offset:2px; }
+.tp-sport-card-icon { flex:none; display:grid; place-items:center; width:50px; height:50px; border-radius:12px; background:#eef4e2; color:#294833; }
+.tp-sport-card-body { flex:1; min-width:0; display:flex; flex-direction:column; gap:6px; }
+.tp-sport-card-body strong { font-size:15px; letter-spacing:-.3px; overflow-wrap:anywhere; }
+.tp-sport-card-body small { font-size:11px; color:var(--muted); line-height:1.5; }
+.tp-sport-card-winner { display:inline-flex; align-items:center; gap:5px; color:#4b6a2a !important; font-weight:700; }
+.tp-sport-card-arrow { flex:none; color:var(--muted); }
+.tp-sport-back { border:0; background:none; cursor:pointer; font:inherit; font-size:12px; margin-bottom:20px; }
+.tp-sport-head { display:flex; align-items:center; gap:18px; margin-bottom:32px; }
+.tp-sport-head h2 { overflow-wrap:anywhere; }
+.tp-sport-head p { margin-top:4px; }
+.tp-sport-teams { margin-top:40px; }
+@media(max-width:600px) { .tp-sport-grid { grid-template-columns:1fr; } .tp-sport-card { padding:16px; gap:12px; } .tp-sport-head { padding:18px; gap:14px; } }
+@media(prefers-reduced-motion:reduce) { .tp-sport-card { transition:none; } .tp-sport-card:hover { transform:none; } }
+
+/* Podium: larger logos/names and an entrance animation (blocks rise 3 → 2 → 1, teams drop in, winner shines). */
+.tp-podium { --podium-glow:#c5f36b; margin-top:0; padding-top:28px; }
+.tp-podium-team { gap:8px; padding-bottom:18px; }
+.tp-podium-logo { position:relative; display:inline-flex; border-radius:18px; }
+.tp-podium-team .festival-logo { width:76px; height:76px; border-radius:18px; box-shadow:0 8px 22px -10px #1c302755; }
+.tp-podium-step.is-first .festival-logo { width:96px; height:96px; border-radius:22px; }
+.tp-podium-step.is-first .tp-podium-logo { border-radius:22px; animation:tp-podium-pulse 2.6s 1.8s ease-in-out infinite; }
+.tp-podium-team strong { font-size:18px; letter-spacing:-.3px; }
+.tp-podium-step.is-first .tp-podium-team strong { font-size:21px; }
+.tp-podium-team span { font-size:14px; }
+.tp-podium-crown { color:#f5b301; filter:drop-shadow(0 3px 6px #f5b30166); margin-bottom:-2px; }
+.tp-podium-block { position:relative; overflow:hidden; transform-origin:bottom; }
+.tp-podium-step.is-first .tp-podium-block::after { content:""; position:absolute; inset:0; background:linear-gradient(110deg, transparent 35%, #ffffff40 50%, transparent 65%); transform:translateX(-120%); animation:tp-podium-shine 4s 1.6s ease-in-out infinite; pointer-events:none; }
+
+@media(prefers-reduced-motion:no-preference) {
+  .tp-podium-block { animation:tp-podium-rise .75s cubic-bezier(.2,.9,.3,1.12) both; }
+  .tp-podium-block > span { animation:tp-podium-pop .5s cubic-bezier(.3,1.6,.5,1) both; }
+  .tp-podium-team { animation:tp-podium-drop .6s cubic-bezier(.2,.9,.3,1.2) both; }
+  .tp-podium-step.is-third .tp-podium-block { animation-delay:.1s; }
+  .tp-podium-step.is-second .tp-podium-block { animation-delay:.3s; }
+  .tp-podium-step.is-first .tp-podium-block { animation-delay:.5s; }
+  .tp-podium-step.is-third .tp-podium-block > span { animation-delay:.55s; }
+  .tp-podium-step.is-second .tp-podium-block > span { animation-delay:.75s; }
+  .tp-podium-step.is-first .tp-podium-block > span { animation-delay:.95s; }
+  .tp-podium-step.is-third .tp-podium-team { animation-delay:.6s; }
+  .tp-podium-step.is-second .tp-podium-team { animation-delay:.8s; }
+  .tp-podium-step.is-first .tp-podium-team { animation-delay:1.05s; }
+  .tp-podium-step.is-first .festival-logo { animation:tp-podium-float 3.4s 1.8s ease-in-out infinite; }
+  .tp-podium-crown { animation:tp-podium-crown .7s 1.3s cubic-bezier(.3,1.6,.5,1) both, tp-podium-sway 3.4s 2s ease-in-out infinite; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .tp-podium-step.is-first .tp-podium-block::after, .tp-podium-step.is-first .tp-podium-logo { animation:none; }
+}
+@keyframes tp-podium-rise { from { transform:scaleY(0); } to { transform:scaleY(1); } }
+@keyframes tp-podium-pop { from { opacity:0; transform:scale(.4); } to { opacity:1; transform:none; } }
+@keyframes tp-podium-drop { from { opacity:0; transform:translateY(-22px) scale(.92); } to { opacity:1; transform:none; } }
+@keyframes tp-podium-float { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-6px); } }
+@keyframes tp-podium-crown { from { opacity:0; transform:translateY(10px) scale(.3) rotate(-25deg); } to { opacity:1; transform:none; } }
+@keyframes tp-podium-sway { 0%,100% { transform:rotate(-6deg); } 50% { transform:rotate(6deg); } }
+@keyframes tp-podium-shine { 0% { transform:translateX(-120%); } 45%,100% { transform:translateX(120%); } }
+@keyframes tp-podium-pulse { 0%,100% { box-shadow:0 0 0 0 transparent; } 50% { box-shadow:0 0 0 6px color-mix(in srgb, var(--podium-glow) 35%, transparent), 0 0 28px 4px color-mix(in srgb, var(--podium-glow) 45%, transparent); } }
+
+@media(max-width:600px) {
+  .tp-podium-team { gap:6px; padding-bottom:12px; }
+  .tp-podium-team .festival-logo { width:54px; height:54px; border-radius:13px; }
+  .tp-podium-step.is-first .festival-logo { width:68px; height:68px; border-radius:16px; }
+  .tp-podium-step.is-first .tp-podium-logo { border-radius:16px; }
+  .tp-podium-team strong { font-size:13px; }
+  .tp-podium-step.is-first .tp-podium-team strong { font-size:15px; }
+  .tp-podium-team span { font-size:12px; }
+  .tp-podium-crown { width:24px; height:24px; }
+}
